@@ -6,6 +6,12 @@ import (
 	"github.com/tidwall/sjson"
 )
 
+// not sure about this yet...
+type Properties interface {
+	GetProperty(context.Context, string) (interface{}, error)
+	SetProperty(context.Context, string, interface{}) error
+}
+
 func GetProperty(ctx context.Context, body []byte, path string) (interface{}, error) {
 
 	rsp, err := GetPropertyAsGJSON(ctx, body, path)
