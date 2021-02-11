@@ -14,3 +14,15 @@ func (e *NotImplementedError) Error() string {
 func (e *NotImplementedError) String() string {
 	return e.Error()
 }
+
+type NotFoundError struct {
+	path string
+}
+
+func (e *NotFoundError) Error() string {
+	return fmt.Sprintf("Property '%s' not found", e.path)
+}
+
+func (e *NotFoundError) String() string {
+	return e.Error()
+}

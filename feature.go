@@ -2,6 +2,7 @@ package feature
 
 import (
 	"context"
+	"encoding/json"
 	"github.com/paulmach/orb"
 	"github.com/paulmach/orb/geojson"
 	"io"
@@ -9,7 +10,7 @@ import (
 )
 
 type Feature interface {
-	Properties() []byte
+	Properties() *Properties
 	Geometry() orb.Geometry
 }
 
@@ -32,8 +33,17 @@ func UnmarshalFeature(ctx context.Context, body []byte) (Feature, error) {
 		return nil, err
 	}
 
-	// FIX ME
-	props := body
+	enc_props, err := json.Marshal(f.Properties)
+
+	if err != nil {
+		return nil, err
+	}
+
+	props, err := NewProperties(ctx, enc_props)
+
+	if err != nil {
+		return nil, err
+	}
 
 	return UnmarshalWhosOnFirstFeature(ctx, f.Geometry, props)
 }

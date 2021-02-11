@@ -7,11 +7,11 @@ import (
 
 type WhosOnFirstFeature struct {
 	Feature
-	properties []byte
+	properties *Properties
 	geometry   orb.Geometry
 }
 
-func (f *WhosOnFirstFeature) Properties() []byte {
+func (f *WhosOnFirstFeature) Properties() *Properties {
 	return f.properties
 }
 
@@ -19,7 +19,7 @@ func (f *WhosOnFirstFeature) Geometry() orb.Geometry {
 	return f.geometry
 }
 
-func UnmarshalWhosOnFirstFeature(ctx context.Context, geom orb.Geometry, props []byte) (Feature, error) {
+func UnmarshalWhosOnFirstFeature(ctx context.Context, geom orb.Geometry, props *Properties) (Feature, error) {
 
 	f := &WhosOnFirstFeature{
 		properties: props,
