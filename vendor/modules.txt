@@ -1,11 +1,14 @@
-# github.com/paulmach/orb v0.2.1
-github.com/paulmach/orb
-github.com/paulmach/orb/geojson
-# github.com/tidwall/gjson v1.6.8
+# github.com/sfomuseum/go-edtf v0.3.0
+## explicit
+github.com/sfomuseum/go-edtf
+# github.com/tidwall/gjson v1.9.1
+## explicit
 github.com/tidwall/gjson
 # github.com/tidwall/match v1.0.3
 github.com/tidwall/match
-# github.com/tidwall/pretty v1.0.2
+# github.com/tidwall/pretty v1.2.0
 github.com/tidwall/pretty
-# github.com/tidwall/sjson v1.1.5
-github.com/tidwall/sjson
+# github.com/whosonfirst/go-whosonfirst-flags v0.4.3
+## explicit
+github.com/whosonfirst/go-whosonfirst-flags
+github.com/whosonfirst/go-whosonfirst-flags/existential

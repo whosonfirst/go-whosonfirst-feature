@@ -1,9 +1,9 @@
-module github.com/whosonfirst/go-whosonirst-feature
+module github.com/whosonfirst/go-whosonfirst-feature
 
-go 1.12
+go 1.16
 
 require (
-	github.com/paulmach/orb v0.2.1
-	github.com/tidwall/gjson v1.6.8
-	github.com/tidwall/sjson v1.1.5
+	github.com/sfomuseum/go-edtf v0.3.0
+	github.com/tidwall/gjson v1.9.1
+	github.com/whosonfirst/go-whosonfirst-flags v0.4.3
 )
