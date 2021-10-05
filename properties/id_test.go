@@ -8,7 +8,7 @@ import (
 
 var valid_id = strings.NewReader(`{"properties":{"wof:id": 1234 }}`)
 
-var invalid_id = strings.NewReader(`{"properties":{"wof:id": -5 }}`)
+var invalid_id = strings.NewReader(`{"properties":{"wof:id": -1 }}`)
 
 var missing_id = strings.NewReader(`{"properties":{ }}`)
 
@@ -40,10 +40,10 @@ func TestInValidId(t *testing.T) {
 		t.Fatalf("Failed to read data (invalid), %v", err)
 	}
 
-	_, err = Id(body)
+	id, err := Id(body)
 
 	if err == nil {
-		t.Fatalf("Expect data (invalid) to fail")
+		t.Fatalf("Expect data (%d, invalid) to fail", id)
 	}
 }
 
