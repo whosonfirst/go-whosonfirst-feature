@@ -40,7 +40,9 @@ func TestMissingConcordances(t *testing.T) {
 
 	concordances := Concordances(body)
 
-	if concordances != nil {
+	_, ok := concordances["foo"]
+
+	if ok {
 		t.Fatalf("Expected data (missing) to fail")
 	}
 }
