@@ -44,7 +44,7 @@ func TestMissingCountry(t *testing.T) {
 		t.Fatalf("Expect data (missing) failed")
 	}
 
-	if country != "XX" {
+	if country != "XY" {
 		t.Fatal("Invalid COUNTRY (missing)")
 	}
 }
