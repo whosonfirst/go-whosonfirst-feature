@@ -5,10 +5,10 @@ github.com/paulmach/orb/geojson
 # github.com/sfomuseum/go-edtf v0.3.0
 ## explicit
 github.com/sfomuseum/go-edtf
-# github.com/tidwall/gjson v1.9.1
+# github.com/tidwall/gjson v1.9.3
 ## explicit
 github.com/tidwall/gjson
-# github.com/tidwall/match v1.0.3
+# github.com/tidwall/match v1.1.1
 github.com/tidwall/match
 # github.com/tidwall/pretty v1.2.0
 github.com/tidwall/pretty
