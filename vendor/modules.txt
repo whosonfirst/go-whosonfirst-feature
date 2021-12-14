@@ -1,11 +1,11 @@
-# github.com/paulmach/orb v0.3.0
+# github.com/paulmach/orb v0.4.0
 ## explicit
 github.com/paulmach/orb
 github.com/paulmach/orb/geojson
 # github.com/sfomuseum/go-edtf v0.3.1
 ## explicit
 github.com/sfomuseum/go-edtf
-# github.com/tidwall/gjson v1.10.2
+# github.com/tidwall/gjson v1.12.1
 ## explicit
 github.com/tidwall/gjson
 # github.com/tidwall/match v1.1.1
