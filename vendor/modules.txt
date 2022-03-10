@@ -5,7 +5,7 @@ github.com/paulmach/orb/geojson
 # github.com/sfomuseum/go-edtf v0.3.1
 ## explicit
 github.com/sfomuseum/go-edtf
-# github.com/tidwall/gjson v1.12.1
+# github.com/tidwall/gjson v1.14.0
 ## explicit
 github.com/tidwall/gjson
 # github.com/tidwall/match v1.1.1

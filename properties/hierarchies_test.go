@@ -8,6 +8,8 @@ import (
 
 var valid_hierarchies = strings.NewReader(`{"properties":{"wof:hierarchy": [ {"foo_id": 123 }, { "bar_id": 456 } ]}}`)
 
+var valid_hierarchies_2 = strings.NewReader(`{"properties":{"wof:hierarchy": [ {"foo_id": 123 }, { "bar_id": 456 }, { "hello": 1, "world": 2 } ]}}`)
+
 var missing_hierarchies = strings.NewReader(`{"properties":{ }}`)
 
 func TestValidHierarchies(t *testing.T) {
@@ -46,5 +48,39 @@ func TestMissingHierarchies(t *testing.T) {
 
 	if hierarchies != nil {
 		t.Fatalf("Hierarchies should be nil")
+	}
+}
+
+func TestMergeHierarchies(t *testing.T) {
+
+	f1, err := io.ReadAll(missing_hierarchies)
+
+	if err != nil {
+		t.Fatalf("Failed to read data (missing), %v", err)
+	}
+
+	f2, err := io.ReadAll(valid_hierarchies)
+
+	if err != nil {
+		t.Fatalf("Failed to read data (valid), %v", err)
+	}
+
+	f3, err := io.ReadAll(valid_hierarchies_2)
+
+	if err != nil {
+		t.Fatalf("Failed to read data (valid 2), %v", err)
+	}
+
+	hierarchies, err := MergeHierarchies(f1, f2, f3)
+
+	if err != nil {
+		t.Fatalf("Failed to merge hierarchies, %v", err)
+	}
+
+	count := len(hierarchies)
+	expected := 3
+
+	if count != expected {
+		t.Fatalf("Unexpected hierarchy count after merging. Expected %d but got %d", expected, count)
 	}
 }
