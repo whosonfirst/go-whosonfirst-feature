@@ -2,7 +2,9 @@ package properties
 
 import (
 	"fmt"
+
 	"github.com/tidwall/gjson"
+	"github.com/whosonfirst/go-whosonfirst-feature"
 )
 
 func Id(body []byte) (int64, error) {
@@ -10,7 +12,7 @@ func Id(body []byte) (int64, error) {
 	rsp := gjson.GetBytes(body, "properties.wof:id")
 
 	if !rsp.Exists() {
-		return 0, fmt.Errorf("Missing wof:id property")
+		return 0, feature.PropertyNotFoundError("wof:id")
 	}
 
 	id := rsp.Int()
