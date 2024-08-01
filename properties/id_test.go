@@ -4,13 +4,17 @@ import (
 	"io"
 	"strings"
 	"testing"
+
+	"github.com/whosonfirst/go-whosonfirst-feature"
 )
 
 var valid_id = strings.NewReader(`{"properties":{"wof:id": 1234 }}`)
 
-var invalid_id = strings.NewReader(`{"properties":{"wof:id": -1 }}`)
+var invalid_id = strings.NewReader(`{"properties":{"wof:id": -6 }}`)
 
 var missing_id = strings.NewReader(`{"properties":{ }}`)
+
+var bunk_id = strings.NewReader(`{"properties":{ "wof:id": "12345"}}`)
 
 func TestValidId(t *testing.T) {
 
@@ -58,6 +62,25 @@ func TestMissingId(t *testing.T) {
 	_, err = Id(body)
 
 	if err == nil {
-		t.Fatalf("Expect data (missing) to fail")
+		t.Fatalf("Expected missing data to fail")
+	}
+
+	if !feature.IsPropertyNotFoundError(err) {
+		t.Fatalf("Expected missing data (missing) to return PropertyNotFoundError")
+	}
+}
+
+func TestBunkId(t *testing.T) {
+
+	body, err := io.ReadAll(bunk_id)
+
+	if err != nil {
+		t.Fatalf("Failed to read data (bunk), %v", err)
+	}
+
+	_, err = Id(body)
+
+	if err == nil {
+		t.Fatalf("Expected bunk data to fail")
 	}
 }
