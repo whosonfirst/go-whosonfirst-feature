@@ -10,7 +10,7 @@ import (
 
 var valid_id = strings.NewReader(`{"properties":{"wof:id": 1234 }}`)
 
-var invalid_id = strings.NewReader(`{"properties":{"wof:id": -1 }}`)
+var invalid_id = strings.NewReader(`{"properties":{"wof:id": -6 }}`)
 
 var missing_id = strings.NewReader(`{"properties":{ }}`)
 
