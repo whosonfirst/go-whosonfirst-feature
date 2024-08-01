@@ -14,6 +14,8 @@ var invalid_id = strings.NewReader(`{"properties":{"wof:id": -6 }}`)
 
 var missing_id = strings.NewReader(`{"properties":{ }}`)
 
+var bunk_id = strings.NewReader(`{"properties":{ "wof:id": "12345"}}`)
+
 func TestValidId(t *testing.T) {
 
 	body, err := io.ReadAll(valid_id)
@@ -65,5 +67,20 @@ func TestMissingId(t *testing.T) {
 
 	if !feature.IsPropertyNotFoundError(err) {
 		t.Fatalf("Expected missing data (missing) to return PropertyNotFoundError")
+	}
+}
+
+func TestBunkId(t *testing.T) {
+
+	body, err := io.ReadAll(bunk_id)
+
+	if err != nil {
+		t.Fatalf("Failed to read data (bunk), %v", err)
+	}
+
+	_, err = Id(body)
+
+	if err == nil {
+		t.Fatalf("Expected bunk data to fail")
 	}
 }

@@ -2,11 +2,14 @@ package properties
 
 import (
 	"fmt"
+	"regexp"
 
 	"github.com/tidwall/gjson"
 	"github.com/whosonfirst/go-whosonfirst-feature"
 	"github.com/whosonfirst/go-whosonfirst-feature/constants"
 )
+
+var re_wofid = regexp.MustCompile(`^\-?\d+$`)
 
 func Id(body []byte) (int64, error) {
 
@@ -14,6 +17,10 @@ func Id(body []byte) (int64, error) {
 
 	if !rsp.Exists() {
 		return 0, feature.PropertyNotFoundError("wof:id")
+	}
+
+	if !re_wofid.MatchString(rsp.Raw) {
+		return constants.UNKNOWN, fmt.Errorf("Invalid wof:id '%s'", rsp.Raw)
 	}
 
 	wof_id := rsp.Int()
@@ -24,7 +31,7 @@ func Id(body []byte) (int64, error) {
 		case constants.MULTIPLE_PARENTS, constants.MULTIPLE_NEIGHBOURHOODS, constants.ITS_COMPLICATED, constants.UNKNOWN:
 			// pass
 		default:
-			return 0, fmt.Errorf("Invalid or unrecognized ID value (%d)", wof_id)
+			return constants.UNKNOWN, fmt.Errorf("Invalid or unrecognized ID value (%d)", wof_id)
 		}
 	}
 
