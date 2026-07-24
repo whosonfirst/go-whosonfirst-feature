@@ -2,6 +2,21 @@
 
 A Go package for working with Who's On First (WOF) GeoJSON records.
 
+
+## Deprecation notice
+
+This package has been deprecated. Its functionality has been moved in to the [whosonfirst/go-whosonfirst](https://github.com/whosonfirst/go-whosonfirst) package. Efforts have been made to keep changes as minimal as possible. In most (but not all) cases update should be as simple as replacing:
+
+```
+import "github.com/whosonfirst/go-whosonfirst-feature`
+```
+
+With:
+
+```
+import "github.com/whosonfirst/go-whosonfirst/v4/feature"
+```
+
 ## Important
 
 This is exploratory work to develop a standard Go package for working with Who's On First (WOF) GeoJSON records that will eventually replace the `go-whosonfirst-geojson-v2` package.
